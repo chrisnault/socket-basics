@@ -7,9 +7,11 @@ socket.on('connect', function () {
 });
 
 socket.on('message', function(message) {
-	console.log('New message');
-	console.log(message.text);
-	jQuery('.chatlog').append('<p>' + message.text + '</p>');
+	// console.log('New message');
+	// console.log(message.text);
+	var $timestampMoment = moment.utc(message.time);
+	jQuery('.chatlog')
+		.append('<br>' + $timestampMoment.local().format('h:mm a') + ' : ' + message.text);
 	
 });
 
