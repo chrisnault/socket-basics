@@ -9,9 +9,10 @@ socket.on('connect', function () {
 socket.on('message', function(message) {
 	// console.log('New message');
 	// console.log(message.text);
-	var $timestampMoment = moment.utc(message.time);
+	var $timestampMoment = moment.utc(message.timestamp);
 	jQuery('.chatlog')
-		.append('<br>' + $timestampMoment.local().format('h:mm a') + ' : ' + message.text);
+		.append('<br><strong>' + 
+			$timestampMoment.local().format('h:mm a') + '</strong> : ' + message.text);
 	
 });
 

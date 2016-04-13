@@ -14,16 +14,17 @@ io.on('connection', function(socket) {
 		// io.emit sends to everone includeing the sender
 		// socket.broadcast.emit goes to everyone but the sender
 		// socket.broadcast.emit('message', message);
+		message.timestamp = moment().valueOf();
 		io.emit('message', message);
 	});
 	
-	var now = moment();
-	var timestamp = now.format('x');
-	var timestampMoment = moment.utc(now);
+	// var now = moment();
+	// var timestamp = now.format('x');
+	// var timestampMoment = moment.utc(now);
 	
 	socket.emit('message', {
 		text: 'Welcome to my chat app',
-		time: timestampMoment
+		timestamp: moment().valueOf()
 	});
 });
 
