@@ -18,12 +18,9 @@ io.on('connection', function(socket) {
 		io.emit('message', message);
 	});
 	
-	// var now = moment();
-	// var timestamp = now.format('x');
-	// var timestampMoment = moment.utc(now);
-	
 	socket.emit('message', {
 		text: 'Welcome to my chat app',
+		name: 'System',
 		timestamp: moment().valueOf()
 	});
 });

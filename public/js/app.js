@@ -1,5 +1,7 @@
+// get query params
+var name = getQueryVariable('name') || 'Anonymous';
+var room = getQueryVariable('room');
 // this is running in the browser so 'socket' is available in the browser console !!
-
 var socket = io();
 
 socket.on('connect', function () {
@@ -7,13 +9,11 @@ socket.on('connect', function () {
 });
 
 socket.on('message', function(message) {
-	// console.log('New message');
-	// console.log(message.text);
+	var $message = jQuery('.chatlog');
 	var $timestampMoment = moment.utc(message.timestamp);
-	jQuery('.chatlog')
-		.append('<br><strong>' + 
-			$timestampMoment.local().format('h:mm a') + '</strong> : ' + message.text);
-	
+	$message.append('<p><small><strong>' + message.name + ' '  + 
+		$timestampMoment.local().format('h:mm a') + '</strong>' +
+		'  >>>  ' + message.text + '</small></p>');
 });
 
 // form handler
@@ -23,7 +23,8 @@ $form.on('submit', function (event) {
 	var $message = $form.find('input[name=message]');
 	
 	socket.emit('message', {
-		text: $message.val()
+		text: $message.val(),
+		name: name
 	});
 
 	$message.val('');
