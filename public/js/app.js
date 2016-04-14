@@ -11,9 +11,9 @@ socket.on('connect', function () {
 socket.on('message', function(message) {
 	var $message = jQuery('.chatlog');
 	var $timestampMoment = moment.utc(message.timestamp);
-	$message.append('<p><small><strong>' + message.name + ' '  + 
-		$timestampMoment.local().format('h:mm a') + '</strong>' +
-		'  >>>  ' + message.text + '</small></p>');
+	$message.append('<p><small><strong>' + $timestampMoment.local().format('h:mma') + ' '  + 
+		message.name + '</strong>' +
+		'  :  ' + message.text + '</small></p>');
 });
 
 // form handler
