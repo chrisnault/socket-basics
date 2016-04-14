@@ -4,6 +4,9 @@ var room = getQueryVariable('room');
 // this is running in the browser so 'socket' is available in the browser console !!
 var socket = io();
 
+// .text instead of .val!!
+jQuery('.room-title').text(room);
+
 socket.on('connect', function () {
 	console.log('Connected to socket.io server!');
 });
