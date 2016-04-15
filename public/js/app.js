@@ -16,11 +16,13 @@ socket.on('connect', function () {
 });
 
 socket.on('message', function(message) {
-	var $message = jQuery('.chatlog');
+	var $messages = jQuery('.chatlog');
+	var $message = jQuery("<li class='list-group-item'></li>");
 	var $timestampMoment = moment.utc(message.timestamp);
 	$message.append('<p><small><strong>' + $timestampMoment.local().format('h:mma') + ' '  + 
 		message.name + '</strong>' +
 		'  :  ' + message.text + '</small></p>');
+	$messages.append($message);
 });
 
 // form handler
